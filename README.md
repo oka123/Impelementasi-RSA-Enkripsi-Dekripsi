@@ -13,4 +13,8 @@ Program ini mendemonstrasikan proses enkripsi dan dekripsi pesan menggunakan alg
 ## ⚖️ Credit & Attribution
 Aplikasi ini dibangun dengan memodifikasi *open-source repository* milik **Imaaachan**. 
 * **Original Repository:** [[Imaaachan/RSA-2048-OAEP-]([https://github.com/Imaaachan/RSA-2048-OAEP-](https://github.com/Imaaachan/RSA-2048-OAEP-#))](https://github.com/Imaaachan/RSA-2048-OAEP-)
-* **Modifikasi yang dilakukan kelompok kami:** Melakukan penyesuaian pada antarmuka (UI) Streamlit untuk mengonversi *object key* menjadi format PEM, serta menampilkan log Kunci Publik dan Kunci Privat secara langsung di layar (UI) agar sesuai dengan format pelaporan tugas dari dosen.
+* **Modifikasi yang dilakukan kelompok kami:** Melakukan penyesuaian pada antarmuka (UI) Streamlit untuk mengonversi *object key* menjadi format PEM, serta menampilkan log Kunci Publik dan Kunci Privat secara langsung di layar (UI).
+
+* ## 🚀 Live Demo Aplikasi
+Aplikasi enkripsi dan dekripsi RSA ini sudah di-deploy dan dapat langsung dicoba secara *online* melalui tautan berikut:
+**[Klik di sini untuk membuka Aplikasi RSA Streamlit]((https://impelementasi-rsa-enkripsi-dekripsi-x4cjfysjkrenu6zcelfxjq.streamlit.app/))**
