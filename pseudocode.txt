@@ -1,0 +1,122 @@
+FUNCTION main():
+    OUTPUT "Selamat datang di aplikasi kriptografi RSA!"
+    CALL mode()
+
+FUNCTION mode():
+    WHILE TRUE DO
+        OUTPUT "Pilih mode input:"
+        OUTPUT "[1] Manual"
+        OUTPUT "[2] Dari File (csv/xlsx)"
+        OUTPUT "Ketik 'Exit' untuk keluar."
+        
+        mode_input ← INPUT("Masukkan pilihan mode: ")
+
+        IF mode_input == "exit" THEN
+            OUTPUT "Sampai jumpa lagi!"
+            BREAK
+        ELSE IF mode_input == "1" OR mode_input == "2" THEN
+            CALL operasi(mode_input)
+        ELSE
+            OUTPUT "Pilihan tidak valid! Coba lagi."
+        END IF
+    END WHILE
+
+
+FUNCTION operasi(mode_input STRING):
+    WHILE TRUE DO
+        OUTPUT "Pilih mode operasi:"
+        OUTPUT "[1] Enkripsi"
+        OUTPUT "[2] Dekripsi"
+        OUTPUT "Ketik 'Exit' untuk keluar."
+
+        operasi_input ← INPUT("Masukkan pilihan operasi: ")
+
+        IF operasi_input == "exit" THEN
+            OUTPUT "Sampai jumpa lagi!"
+            BREAK
+
+        ELSE IF mode_input == "1" THEN
+            IF operasi_input == "1" THEN
+                CALL enkripsi_manual()
+                BREAK
+            ELSE IF operasi_input == "2" THEN
+                CALL dekripsi_manual()
+                BREAK
+            ELSE
+                OUTPUT "Pilihan tidak valid!"
+            END IF
+
+        ELSE IF mode_input == "2" THEN
+            IF operasi_input == "1" THEN
+                CALL enkripsi_file()
+                BREAK
+            ELSE IF operasi_input == "2" THEN
+                CALL dekripsi_file()
+                BREAK
+            ELSE
+                OUTPUT "Pilihan tidak valid!"
+            END IF
+        END IF
+    END WHILE
+
+
+FUNCTION enkripsi_manual():
+    plaintext ← INPUT("Masukkan pesan yang ingin dienkripsi: ")
+    ciphertext_hex ← encrypt_message(plaintext)
+    OUTPUT "Hasil enkripsi (hex): ", ciphertext_hex
+
+
+FUNCTION dekripsi_manual():
+    ciphertext_hex ← INPUT("Masukkan ciphertext (hex) yang ingin didekripsi: ")
+    plaintext ← decrypt_message(ciphertext_hex)
+    OUTPUT "Hasil dekripsi: ", plaintext
+
+
+FUNCTION enkripsi_file():
+    formatFile ← INPUT("Masukkan format file (csv/xlsx): ")
+
+    IF formatFile == "csv" THEN
+        UPLOAD file CSV
+        dataframe ← READ CSV file
+        OUTPUT "Kolom tersedia: ", dataframe.columns
+        kolom_dipilih ← INPUT("Masukkan nama kolom yang ingin dienkripsi: ")
+
+        dataframe_result ← APPLY encrypt_message() pada kolom_dipilih
+        SIMPAN dataframe_result ke file "encrypted_namaFile.csv"
+        OUTPUT "File terenkripsi berhasil disimpan!"
+    
+    ELSE IF formatFile == "xlsx" THEN
+        UPLOAD file XLSX
+        dataframe ← READ EXCEL file
+        OUTPUT "Kolom tersedia: ", dataframe.columns
+        kolom_dipilih ← INPUT("Masukkan nama kolom yang ingin dienkripsi: ")
+
+        dataframe_result ← APPLY encrypt_message() pada kolom_dipilih
+        SIMPAN dataframe_result ke file "encrypted_namaFile.xlsx"
+        OUTPUT "File terenkripsi berhasil disimpan!"
+
+    ELSE
+        OUTPUT "Format file tidak valid!"
+    END IF
+
+
+FUNCTION dekripsi_file():
+    formatFile ← INPUT("Masukkan format file terenkripsi (csv/xlsx): ")
+
+    IF formatFile == "csv" THEN
+        UPLOAD file CSV terenkripsi
+        dataframe ← READ CSV file
+        dataframe_result ← APPLY decrypt_message() pada kolom terenkripsi
+        SIMPAN dataframe_result ke "decrypted_namaFile.csv"
+        OUTPUT "File hasil dekripsi berhasil disimpan!"
+
+    ELSE IF formatFile == "xlsx" THEN
+        UPLOAD file XLSX terenkripsi
+        dataframe ← READ EXCEL file
+        dataframe_result ← APPLY decrypt_message() pada kolom terenkripsi
+        SIMPAN dataframe_result ke "decrypted_namaFile.xlsx"
+        OUTPUT "File hasil dekripsi berhasil disimpan!"
+    
+    ELSE
+        OUTPUT "Format file tidak valid!"
+    END IF
