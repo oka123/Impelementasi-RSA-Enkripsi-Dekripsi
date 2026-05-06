@@ -1,3 +1,3 @@
-cryptography==48.0.0
-pandas==3.0.2
-streamlit==1.52.2
+cryptography
+pandas
+streamlit
