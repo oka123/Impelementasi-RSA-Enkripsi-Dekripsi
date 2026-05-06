@@ -45,9 +45,9 @@ def page_manual():
     tab1, tab2 = st.tabs(["🔒 Enkripsi", "🔓 Dekripsi"])
     
     with tab1:
-        # Menampilkan kunci publik yang sudah jadi teks
-        st.write("**input kunci Public =**")
-        st.code(pub_text, language="text")
+        # Menampilkan kunci publik dengan expander
+        with st.expander("🔑 Lihat Detail Kunci Publik"):
+            st.code(pub_text, language="text")
         
         text_input = st.text_area("Masukkan pesan teks:", height=150)
         if st.button("Enkripsi Pesan"):
@@ -61,18 +61,15 @@ def page_manual():
                 st.warning("Masukkan teks dulu ya.")
 
     with tab2:
-        # Menampilkan kunci private yang sudah jadi teks
-        st.write("**input kunci Private =**")
-        st.code(priv_text, language="text")
+        # Menampilkan kunci private dengan expander
+        with st.expander("🔑 Lihat Detail Kunci Private"):
+            st.code(priv_text, language="text")
         
         cipher_input = st.text_area("Masukkan Ciphertext (Hex):", height=150)
         if st.button("Dekripsi Pesan"):
             if cipher_input:
                 try:
                     plain = chunked_decrypt_text(cipher_input, st.session_state.private_key)
-                    
-                    
-
                     st.success("Dekripsi Berhasil!")
                     st.text_area("Hasil Plaintext:", value=plain, height=150)
                 except Exception:

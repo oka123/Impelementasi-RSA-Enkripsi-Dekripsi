@@ -114,7 +114,7 @@ def chunked_decrypt_text(encrypted_string, private_key):
 def sidebar_menu():
     with st.sidebar:
         st.header("RSA System 🔐")
-        st.info(f"User: **Misha**") # Personalisasi kecil
+        st.info(f"User: **Kelompok 1A**") # Personalisasi kecil
         menu = st.radio("Navigasi", ["Dashboard", "Enkripsi/Dekripsi Manual", "Proses File"])
         
         st.divider()
