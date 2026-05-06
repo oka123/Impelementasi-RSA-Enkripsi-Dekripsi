@@ -17,7 +17,7 @@ st.set_page_config(
 
 # Konstanta
 MAX_CHUNK_SIZE = 214
-PASSWORD_KEY = b"kemdatRSA" # Password untuk private key
+PASSWORD_KEY = b"kunciPrivate" # Password untuk private key
 
 # Inisialisasi Session State untuk menyimpan kunci sementara di memori browser
 if 'private_key' not in st.session_state:
